@@ -52,3 +52,7 @@ INSERT INTO "core"."settings" ("service_id", "key", "value") VALUES ('com.sonicl
 -- -------------------------------------
 INSERT INTO "core"."settings" ("service_id", "key", "value") VALUES ('com.sonicle.webtop.core', 'addon.notifier.url', 'http://www.nethserver.org/webtop/webtop.exe');
 
+-- -------------------------------------
+-- Set default delete drafts msg on send
+-- -------------------------------------
+INSERT INTO "core"."settings" ("service_id", "key", "value") VALUES ('com.sonicle.webtop.mail', 'default.folder.drafts.deletemsgonsend', 'true');
