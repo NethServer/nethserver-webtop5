@@ -106,6 +106,9 @@ my $query = "INSERT INTO \"core\".\"domains\" (\"domain_id\", \"internet_name\",
 
 print $fh $query;
 
+# Insert zip media type
+print $fh "INSERT INTO \"core\".\"media_type\" (\"extension\", \"media_type\") VALUES ('zip', 'application/zip');\n";
+
 # Set also public url
 my $public_url = $db->get_prop('webtop','PublicUrl') || 'http://'.$db->get('SystemName')->prop('type').'.'.$domain.'/webtop';
 
