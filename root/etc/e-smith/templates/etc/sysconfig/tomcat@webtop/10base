@@ -4,4 +4,4 @@
    our $debug = $webtop{Debug} || "false";
    '';
 }
-JAVA_OPTS="-server -Xms{{$ms}}m -Xmx{{$mx}}m -XX:PermSize=64m -XX:MaxPermSize=256m -Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF8 -Dcom.sonicle.webtop.extjsdebug={{$debug}} -Dcom.sonicle.webtop.scheduler.disable=false -Dcom.sonicle.webtop.devmode=true -Dcom.sonicle.webtop.soextdevmode=false -Dnet.fortuna.ical4j.timezone.update.enabled=false -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
+JAVA_OPTS="-server -Xms{{$ms}}m -Xmx{{$mx}}m -Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF8 -Dcom.sonicle.webtop.extjsdebug={{$debug}} -Dcom.sonicle.webtop.scheduler.disable=false -Dcom.sonicle.webtop.devmode=true -Dcom.sonicle.webtop.soextdevmode=false -Dnet.fortuna.ical4j.timezone.update.enabled=false -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
