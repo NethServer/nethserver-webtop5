@@ -168,5 +168,9 @@ print $fh "INSERT INTO \"core\".\"settings\" (service_id, key, value) SELECT 'co
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.mail' and key = 'imap.acl.lowercase';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.mail', 'imap.acl.lowercase', 'true');\n";
 
+# Fix issue NethServer/dev#5570 (see https://redmine.sonicle.com/issues/541)
+print $fh "UPDATE calendar.events AS cevts SET href = cevts.public_uid || '.ics' FROM calendar.calendars AS ccals WHERE (cevts.calendar_id = ccals.calendar_id) AND (cevts.href IS NULL);\n";
+print $fh "UPDATE contacts.contacts AS ccnts SET href = ccnts.public_uid || '.vcf' FROM contacts.categories AS ccats WHERE (ccnts.category_id = ccats.category_id) AND (ccnts.href IS NULL);\n";
+
 # Execute SQL script
 system("su - postgres  -c 'psql webtop5 < ".$fh->filename."' >/dev/null");
