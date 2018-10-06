@@ -85,3 +85,12 @@ event_actions($event, 'nethserver-webtop5-conf-db' => 50);
 
 event_services($event, 'tomcat@webtop' => 'restart');
 
+#--------------------------------------------------
+# actions for nethserver-sssd-save event
+#--------------------------------------------------
+
+$event = 'nethserver-sssd-save';
+
+event_actions($event, 'nethserver-webtop5-conf-db' => 50);
+
+event_services($event, 'tomcat@webtop' => 'restart');
