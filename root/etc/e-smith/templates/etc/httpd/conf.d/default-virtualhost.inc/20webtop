@@ -1,6 +1,20 @@
 #
 # 20webtop
 #
-RewriteEngine on
-RewriteRule ^/webtop(/.*)?$ https://%\{SERVER_NAME\}/webtop$1 [L,R=301]
+{
+    my $webtop_host = ($webtop{'VirtualHost'} || 'Default');
+    if (! (($webtop{'status'} || '') eq 'enabled')) {
+       $OUT.= "# WebTop webacces is disabled\n\n\n";
+    } 
+    elsif ($webtop_host ne 'Default'){
+       $OUT.= "# SOGo webacces exclusive on $sogo_host\n\n\n";
+    } 
+    else { 
+       $OUT.= "RewriteEngine On\n";
+       $OUT.= "RewriteCond %{HTTPS} !=on\n";
+       $OUT.= "RewriteRule ^/webtop(/.*)?\$ https://%\{SERVER_NAME\}/webtop\$1 [L,R=301]\n";
+
+    }
+}
+
 
