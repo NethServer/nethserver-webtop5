@@ -4,10 +4,10 @@
 {
     my $webtop_host = ($webtop{'VirtualHost'} || 'Default');
     if (! (($webtop{'status'} || '') eq 'enabled')) {
-       $OUT.= "# WebTop webacces is disabled\n\n\n";
+       $OUT.= "# WebTop web access is disabled\n\n\n";
     } 
     elsif ($webtop_host ne 'Default'){
-       $OUT.= "# SOGo webacces exclusive on $sogo_host\n\n\n";
+       $OUT.= "# WebTop web access exclusively on $webtop_host\n\n\n";
     } 
     else { 
        $OUT.= "RewriteEngine On\n";
@@ -16,5 +16,3 @@
 
     }
 }
-
-
