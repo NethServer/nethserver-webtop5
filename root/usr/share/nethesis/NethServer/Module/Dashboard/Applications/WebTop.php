@@ -33,11 +33,18 @@ class WebTop extends \Nethgui\Module\AbstractModule implements \NethServer\Modul
         return "WebTop";
     }
 
-    public function getInfo() 
+    public function getInfo()
     {
-         $host = explode(':',$_SERVER['HTTP_HOST']);
-         return array(
-            'url' => "https://".$host[0]."/webtop"
-         );
-    } 
+        $vhost = $this->getPlatform()->getDatabase('configuration')->getProp('webtop','VirtualHost');
+        if ($vhost) {
+             return array(
+             'url' => "https://".$vhost."/webtop/"
+             );
+        } else {
+             $host = explode(':',$_SERVER['HTTP_HOST']);
+             return array(
+             'url' => "https://".$host[0]."/webtop/"
+             );
+        }
+    }
 }
