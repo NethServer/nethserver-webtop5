@@ -1,0 +1,74 @@
+{
+    my $webtop_host = ($webtop{'VirtualHost'} || 'Default');
+    my $webtop_cert = ($webtop{'Certificate'} || '');
+	my $end_config = ' ';
+    if (! (($webtop{'status'} || '') eq 'enabled')) {
+	$OUT .= "WebTop is disabaled\n";
+    }
+    else{
+        if ($webtop_host ne 'Default'){
+            my $chain_file = ' ';
+            $end_config = '</VirtualHost>';
+            if ($webtop_cert =~ /\./) {
+                $webtop_cert = (split(/\./, $webtop_cert))[0];
+             }
+            if ( -e "/etc/pki/tls/certs/$webtop_cert.crt") {
+                if ( -e "/etc/pki/tls/certs/$webtop_cert-chain.crt"){
+                   $chain_file = "SSLCertificateChainFile \"/etc/pki/tls/certs/$webtop_cert-chain.crt\"\n";
+                }   
+             }elsif ( -e '/etc/pki/tls/certs/WebTop.crt') {
+                $webtop_cert = 'WebTop';
+                if ( -e '/etc/pki/tls/certs/WebTop-chain.crt'){
+                   $chain_file = "SSLCertificateChainFile \"/etc/pki/tls/certs/WebTop-chain.crt\"\n";
+                }
+            } else {
+                $webtop_cert = 'localhost';
+            }
+            
+        $OUT .= <<EOF 
+
+<VirtualHost *:80>
+ ServerName $webtop_host
+ RedirectMatch 301 ^(?!/.well-known/acme-challenge/).* https://$webtop_host
+ RewriteEngine On
+ RewriteCond %\{HTTPS\} !=on
+ RewriteRule (.*) https://%\{SERVER_NAME\}\$1 [R,L]
+</VirtualHost>
+
+
+<VirtualHost *:443>
+ ServerName $webtop_host
+ RedirectMatch ^/\$ /webtop
+ SSLEngine on
+ SSLCertificateFile "/etc/pki/tls/certs/$webtop_cert.crt"
+ SSLCertificateKeyFile "/etc/pki/tls/private/$webtop_cert.key"
+ $chain_file 
+EOF
+        }
+{
+$OUT .= <<EOF
+ ProxyPass /webtop/push ws://127.0.0.1:58080/webtop/push
+ ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
+ ProxyPass /webtop http://127.0.0.1:58080/webtop
+ ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
+ <Directory "/usr/share/webtop/z-push/">
+    AllowOverride None
+    Options None
+    Require all granted
+ </Directory>
+EOF
+}
+# webtop ActiveSync is {$webtop{'ActiveSync'}}
+{
+    if (($webtop{'ActiveSync'} || '') eq 'enabled') {
+        $OUT .= "Alias /Microsoft-Server-ActiveSync /usr/share/webtop/z-push/index.php\n";
+    } else {
+        $OUT .= '';
+    }
+}
+
+
+$OUT.= "$end_config"
+
+}
+}
