@@ -47,6 +47,7 @@ Available properties:
 * ``RemoteCalendarAutosyncOnlywhenonline``: if set to ``enabled`` the remote calendars is auto-sync only when calendar’s owner is online during the sincronization time. Default is ``disabled``
 * ``RemoteCategoryAutosync``: if set to ``enabled`` , it enables remote categories auto-sync functionality. The sincronization interval can be set by user on remote category creation. Default is ``enabled``
 * ``RemoteCategoryAutosyncOnlywhenonline``: if set to ``enabled`` the remote categoties is auto-sync only when category’s owner is online during the sincronization time. Default is ``disabled``
+* ``VirtualHost``: if set to a fully-qualified domain name, WebTop will be accessible directly (and only) via that FQDN.
 
 Example: ::
 
