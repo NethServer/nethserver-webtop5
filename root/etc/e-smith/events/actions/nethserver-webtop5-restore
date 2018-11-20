@@ -5,7 +5,7 @@ if [ -f /var/lib/nethserver/webtop/backup/webtop.sql ]; then
     chown postgres:postgres $drop_sql
     # drop all existing connections to the db and block new ones
     echo "UPDATE pg_database SET datallowconn = 'false' WHERE datname = 'webtop5';" >> $drop_sql
-    echo "SELECT pg_terminate_backend(procpid) FROM pg_stat_activity WHERE datname = 'webtop5';" >> $drop_sql
+    echo "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'webtop5';" >> $drop_sql
     # drop the db, then recreate it
     echo "DROP DATABASE webtop5;" >> $drop_sql
     password=`perl -e "use NethServer::Password; print NethServer::Password::store('webtop5');"`
