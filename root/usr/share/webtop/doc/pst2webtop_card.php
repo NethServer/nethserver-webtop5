@@ -173,8 +173,6 @@ if (!$dryrun) {
                 if (isset($NOTE)) {
                     $arrayContact["notes"] = truncateString($NOTE, 2000);
                 }
-                $arrayContact["public_uid"] = truncateString($NOTE, 2000);
-
 
                 $id = getGlobalKey($webtop_db,'SEQ_CONTACTS');
                 $arrayContact["contact_id"] = $id;
