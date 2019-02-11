@@ -155,6 +155,7 @@ if ($tzrow[0] != "")
             $id = getGlobalKey();
             $arrayEvent["event_id"] = $id;
             $arrayEvent["public_uid"] = uniqid();
+	    $arrayEvent["href"]=$arrayEvent["public_uid"].".ics";
             $arrayEvent["read_only"] = false;
 	    echo "Importing $subject on Calendar $foldername ($user) ".$event['DTSTART']." $fromtime offset $timeOffset ....";
 	    if (!$dryrun) {
