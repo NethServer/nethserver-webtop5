@@ -1,0 +1,6 @@
+  "log": \{
+{
+    $OUT = '    "level": "' . ($webtop{'ActiveSyncLog'} || 'ERROR') . '",'
+}
+    "dir": "/var/log/z-push/"
+  \},

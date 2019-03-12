@@ -1,0 +1,17 @@
+{
+    #
+    # issue5729 - fix ActiveSync properties
+    #
+    
+    use esmith::ConfigDB;
+
+    my $configDb = esmith::ConfigDB->open() || return '';
+
+
+    my $log = $configDb->get_prop('webtop', 'ActiveSyncLog') || '';
+    $log =~ s/LOGLEVEL_//;
+    $configDb->set_prop('webtop', 'ActiveSyncLog', $log);
+    $configDb->get_prop_and_delete('webtop','ActiveSync');
+
+    '';
+}

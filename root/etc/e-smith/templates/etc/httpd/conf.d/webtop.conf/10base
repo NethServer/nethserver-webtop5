@@ -7,19 +7,3 @@ ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPass /webtop http://127.0.0.1:58080/webtop
 ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
 
-# webtop ActiveSync is {$webtop{'ActiveSync'}}
-{
-    if (($webtop{'ActiveSync'} || '') eq 'enabled') {
-        $OUT = 'Alias /Microsoft-Server-ActiveSync /usr/share/webtop/z-push/index.php';
-    } else {
-        $OUT = '';
-    }
-}
-
-<Directory "/usr/share/webtop/z-push/">
-    AllowOverride None
-    Options None
-    Require all granted
-</Directory>
-
-

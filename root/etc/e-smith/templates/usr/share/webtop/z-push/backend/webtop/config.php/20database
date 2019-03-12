@@ -1,8 +1,0 @@
-define('SONICLE_DBHOST','localhost');
-define('SONICLE_DBUSER','sonicle');
-define('SONICLE_DBNAME','webtop5');
-{
-    use NethServer::Password;
-    our $password = NethServer::Password::store('webtop5');
-    $OUT.="define('SONICLE_DBPASS','$password');\n";
-}

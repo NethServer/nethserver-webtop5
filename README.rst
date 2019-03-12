@@ -111,11 +111,12 @@ To inspect z-push status use: ::
 
 It is also possibile to enable z-push debug using these commands: ::
 
-  config setprop webtop ActiveSyncLog LOGLEVEL_DEBUG
+  config setprop webtop ActiveSyncLog DEBUG
   signal-event nethserver-webtop5-update
 
-Instead of ``LOGLEVEL_DEBUG`` you can use any constant supported by z-push implementation.
-See ``/usr/share/webtop/z-push/config.php``.
+Instead of ``DEBUG`` you can use any constant supported by z-push implementation,
+but remove the ``LOGLEVEL_`` prefi.
+See ``/usr/share/webtop/z-push/inc/zpush.config.php``.
 
 You can test Active Sync using this command (please set user, password and server_name): ::
   
