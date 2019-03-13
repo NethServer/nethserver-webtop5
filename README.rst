@@ -29,7 +29,6 @@ Configuration is saved in ``webtop`` key inside ``configuration`` database.
 
 Available properties:
 
-* ``ActiveSync``: if set to ``enabled``, it enables /Microsoft-Server-ActiveSync url.  Default is ``enabled``
 * ``ActiveSyncLog``: log level of z-push implementation. As default z-push will log only relevant errors.
 * ``Debug``: if set to ``true``, enable debug for the web application. Default is ``false``
 * ``DefaultLocale``: default locale for WebTop users. To list available locales execute: ``/etc/e-smith/events/actions/nethserver-webtop5-locale-tz``
@@ -51,8 +50,7 @@ Available properties:
 Example: ::
 
   webtop=configuration
-      ActiveSync=enabled
-      ActiveSyncLog=LOGLEVEL_ERROR
+      ActiveSyncLog=ERROR
       Debug=false
       DefaultLocale=en_US
       DefaultTimezone=Etc/UTC
