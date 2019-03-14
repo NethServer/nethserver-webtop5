@@ -82,3 +82,10 @@ fi
 # Make sure old tomcat instance has been stopped
 systemctl stop tomcat@webtop 2>/dev/null || exit 0
 config delete tomcat@webtop 2>/dev/null || exit 0
+
+
+# NethServer/dev#5731 - Fix existing installations where core.file_types table is empty
+lines=$(su - postgres -c 'psql webtop5 -t -c "select * from \"core\".\"file_types\""')
+if [ -z "$lines" ]; then
+    su - postgres -c 'grep "INSERT INTO \"core\".\"file_types\"" /usr/share/webtop/sql/data/init-data-core.sql | psql webtop5'
+fi
