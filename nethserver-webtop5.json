@@ -1,0 +1,26 @@
+{
+  "id": "nethserver-webtop5",
+  "name": "WebTop",
+  "summary": "Provides WebTop for NethServer",
+  "description": "Provides WebTop for NethServer",
+  "url": "",
+  "homepage": "https://github.com/NethServer/nethserver-webtop5",
+  "provides": ["nethserver-webtop5"],
+  "release": {
+    "version": "1.0.0"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/NethServer/dev/issues"
+  },
+  "author": {
+    "name": "Edoardo Spadoni",
+    "url": "https://github.com/NethServer/nethserver-webtop5",
+    "email": "edoardo.spadoni@nethesis.it"
+  },
+  "infoapi": {
+    "path": "nethserver-webtop5/read"
+  },
+  "icon": "logo.png",
+  "external": true
+}

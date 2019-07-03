@@ -3,7 +3,7 @@ Name: nethserver-webtop5
 Version: 1.3.0
 Release: 1%{?dist}
 License: GPL
-URL: %{url_prefix}/%{name} 
+URL: %{url_prefix}/%{name}
 Source0: %{name}-%{version}.tar.gz
 Source4: ListTimeZones.java
 Source5: jcharset-2.0.jar
@@ -17,7 +17,7 @@ Requires: tomcat8, java-1.8.0-openjdk
 Requires: nethserver-rh-php71-php-fpm
 
 BuildRequires: perl, java-1.8.0-openjdk-devel
-BuildRequires: nethserver-devtools 
+BuildRequires: nethserver-devtools
 
 %description
 NethServer webtop configuration
@@ -55,6 +55,15 @@ cp %{SOURCE5} root/usr/lib/jvm/jre/lib/ext
 %install
 rm -rf %{buildroot}
 (cd root; find . -depth -print | cpio -dump %{buildroot})
+
+mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
+mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
+mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
+cp -a manifest.json %{buildroot}/usr/share/cockpit/%{name}/
+cp -a logo.png %{buildroot}/usr/share/cockpit/%{name}/
+cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
+cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
+
 %{genfilelist} %{buildroot} \
   --file /etc/sudoers.d/webtop 'attr(0440, root, root)' \
   --dir /var/lib/nethserver/webtop 'attr(755, tomcat, tomcat)' \
