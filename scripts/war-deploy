@@ -1,0 +1,95 @@
+#!/bin/bash
+
+#
+# Deploy a WAR from a local path or a staging WAR from https://www.sonicle.com/
+#
+
+BASE_URL="https://www.sonicle.com/nethesis/webtop5/staging/"
+
+if [ "$1" == "help" ] || [ "$1" == "--help" ]; then
+    echo "Usage: $0 [ <WAR-FILEPATH> ]"
+    echo
+    echo "Examples:"
+    echo "   $0"
+    echo "   $0 ~/webtop-webapp-5.war"
+    echo
+    echo "If <WAR-FILEPATH> is not provided, WAR file will be downloaded from $BASE_URL"
+    exit
+fi
+
+WORK_DIR=/tmp/webtop-deploy
+LOG="$WORK_DIR/deploy.log"
+BACKUP_DIR="$WORK_DIR/webtop-"$(date +%s)
+
+# Create working directory
+mkdir -p $WORK_DIR
+
+# Redirect stderr and stdout also to logfile
+exec > >(tee -ia $LOG)
+exec 2> >(tee -ia $LOG)
+
+which unzip &>/dev/null
+# Install required dependcies
+if [ $? -gt 0 ]; then
+    yum install unzip -y
+fi
+
+if [ $? -gt 0 ]; then
+    echo "Can't install unzip"
+    exit 1
+fi
+
+echo "$(date +'%h %d %H:%M:%S') Starting deploy"
+
+if [ "$#" -eq 0 ]; then
+    echo "Deploying from $BASE_URL"
+
+    curl_output=$(curl -sS $BASE_URL)
+    version=$(echo $curl_output | grep -oP 'webtop5%23%23\K\w+')
+    echo "Version detected: $version"
+
+    WAR_FILE=$WORK_DIR/wt-staging-$version.war
+    STAGING_URL="https://www.sonicle.com/nethesis/webtop5/staging/webtop5%23%23$version.war"
+
+    echo "Downloading staging WAR..."
+    wget "$STAGING_URL" -O $WAR_FILE
+    true
+    if [ $? -gt 0 ]; then
+        echo "Can't download staging file: $STAGING_URL"
+        exit 1
+    fi
+
+    if [ -z $WAR_FILE ]; then
+        echo "Downloaded file is invalid"
+        exit 1:
+    fi
+else
+    WAR_FILE=$1
+    echo "Deploying $WAR_FILE"
+fi
+
+echo "Stopping tomcat"
+systemctl stop tomcat8@webtop
+
+echo "Creating backup dir: $BACKUP_DIR"
+mv /var/lib/tomcats/webtop/webapps/webtop/ $BACKUP_DIR
+
+echo "Extracting war file"
+unzip -d /var/lib/tomcats/webtop/webapps/webtop/ $WAR_FILE
+
+echo "Restarting tomcat"
+/sbin/e-smith/signal-event nethserver-webtop5-update
+
+echo
+echo "Use 'journalctl -u tomcat8@webtop' to inspect webapp startup"
+echo "The result log can be found at $LOG"
+echo "At the end, you can remove the temporary directory: $WORK_DIR"
+echo
+
+if [ "$#" -eq 0 ]; then
+    WAR_DESCR="WAR#$version"
+else
+    WAR_DESCR=$WAR_FILE
+fi
+
+echo "$(date +'%h %d %H:%M:%S') Completed deploy of $WAR_DESCR"
