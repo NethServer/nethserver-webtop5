@@ -12,15 +12,17 @@ Facter.add('webtop') do
             webtop[t.split('.')[1]] = out.to_i
         end
         pid = Facter::Core::Execution.exec("systemctl show tomcat8@webtop -p MainPID").strip().split("=")[1]
-        File.open("/proc/#{pid}/status").each do |line|
-            parts = line.split(":")
-            label = parts[0].strip()
-            value = parts[1].strip()
-            if label == "VmSize"
-                webtop['memory_virtual'] = value.match(/(\d+)/)[1].to_i
-            end
-            if label == "VmRSS"
-                webtop['memory_resident'] = value.match(/(\d+)/)[1].to_i
+        if pid.to_i > 0
+            File.open("/proc/#{pid}/status").each do |line|
+                parts = line.split(":")
+                label = parts[0].strip()
+                value = parts[1].strip()
+                if label == "VmSize"
+                    webtop['memory_virtual'] = value.match(/(\d+)/)[1].to_i
+                end
+                if label == "VmRSS"
+                    webtop['memory_resident'] = value.match(/(\d+)/)[1].to_i
+                end
             end
         end
 
