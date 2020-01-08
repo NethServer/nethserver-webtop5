@@ -191,7 +191,7 @@ my $smtp_starttls = $db->get_prop('webtop','SmtpStarttls') || "disabled";
 if ($smtp_starttls eq "enabled") { $smtp_starttls = "true"; } elsif ($smtp_starttls eq "disabled") { $smtp_starttls = "false"; }
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'smtp.starttls';\n";
-print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'smtp.starttls', '$smtp_auth');\n";
+print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'smtp.starttls', '$smtp_starttls');\n";
 
 # Set remote calendar automatic synchronization
 my $remote_calendar_autosync = $db->get_prop('webtop','RemoteCalendarAutosync') || 'enabled';
