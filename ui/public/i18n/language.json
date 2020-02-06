@@ -64,7 +64,8 @@
         "webtop_tasks": "Tasks",
         "webtop_admin_password": "WebTop admin password",
         "warning": "Warning",
-        "change_default_password": "The default password for the admin user is 'admin'. Please change it as soon as possible from WebTop application to avoid security issues!"
+        "change_default_password": "The default password for the admin user is 'admin'. Please change it as soon as possible from WebTop application to avoid security issues!",
+        "active_admins": "Active admins"
     },
     "docs": {
         "DefaultLocale": "Default locale for WebTop users.",
