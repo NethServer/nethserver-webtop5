@@ -1,0 +1,5 @@
+webtop.log.target=file
+webtop.log.dir=/var/log/webtop
+webtop.log.file.basename=webtop
+webtop.log.file.policy=simple
+webtop.js.debug={{$webtop{Debug} || "false" }}

@@ -1,8 +1,7 @@
 {
    our $ms = $webtop{MinMemory} || "512";
    our $mx = $webtop{MaxMemory} || "1024";
-   our $debug = $webtop{Debug} || "false";
    '';
 }
-CATALINA_OPTS="-server -Xms{{$ms}}m -Xmx{{$mx}}m -Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF8 -Dwebtop.extjs.debug={{$debug}} -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true -Dmail.mime.address.strict=false"
+CATALINA_OPTS="-server -Xms{{$ms}}m -Xmx{{$mx}}m -Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF8 -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true -Dmail.mime.address.strict=false"
 CATALINA_BASE=/var/lib/tomcats/webtop
