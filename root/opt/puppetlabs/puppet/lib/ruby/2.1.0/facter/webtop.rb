@@ -10,7 +10,7 @@ Facter.add('webtop') do
         query_users = Facter::Core::Execution.exec("psql 'postgresql://sonicle:#{pass}@localhost:5432/webtop5' -Aqt -c \"select user_id from core.users where type = 'U' and user_id != 'admin'\"")
         actual_users = query_users.split("\n")
 
-        query_provider = Facter::Core::Execution.exec("echo '{\"action\":\"list-users\"}' | /usr/bin/sudo /usr/libexec/nethserver/api/system-users/read | jq -r 'keys | .[]'")
+        query_provider = Facter::Core::Execution.exec("/usr/libexec/nethserver/list-users -s | jq -r 'keys | .[]'")
         provider_user = query_provider.split("\n")
 
         webtop['users'] = (actual_users & provider_user).length
