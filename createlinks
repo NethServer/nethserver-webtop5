@@ -42,7 +42,6 @@ event_templates($event,
                      '/etc/httpd/conf.d/default-virtualhost.inc',
                      '/etc/webtop/webtop.properties',
                      '/etc/webtop/webtop/data-sources.xml',
-                     '/var/lib/tomcats/webtop/conf/tomcat-users.xml',
                      '/usr/share/webtop/z-push/config.json',
                      '/usr/share/webtop/webdav/config.json',
                      '/etc/sysconfig/tomcat8@webtop'
