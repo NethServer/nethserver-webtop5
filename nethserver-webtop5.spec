@@ -43,7 +43,7 @@ mkdir -p root/usr/share/webtop/bin/
 mkdir -p root/usr/share/webtop/updates/pre
 mkdir -p root/usr/share/webtop/updates/post/main
 
-mkdir -p root/etc/webtop/webtop5
+mkdir -p root/etc/webtop/webtop
 
 for source in %{SOURCE4}
 do
@@ -82,6 +82,7 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
   --dir /var/lib/tomcats/webtop/work 'attr(-, tomcat, tomcat)' \
   --dir /var/log/webtop 'attr(-, tomcat, tomcat)' \
   --dir /etc/webtop 'attr(-, tomcat, tomcat)' \
+  --dir /etc/webtop/webtop 'attr(-, tomcat, tomcat)' \
   --file /etc/sudoers.d/50_nsapi_nethserver_webtop5 'attr(0440,root,root)' \
  > %{name}-%{version}-filelist
 
