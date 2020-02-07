@@ -93,3 +93,8 @@ $event = 'nethserver-sssd-save';
 event_actions($event, 'nethserver-webtop5-conf-db' => 50);
 
 event_services($event, 'tomcat8@webtop' => 'restart');
+
+#
+# Enable manager Tomcat web application
+#
+safe_symlink('/opt/tomcat8/webapps/manager', 'root/var/lib/tomcats/webtop/webapps/manager');
