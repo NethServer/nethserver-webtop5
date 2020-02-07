@@ -22,14 +22,6 @@
               >{{$t('dashboard.active_users')}}</span>
             </span>
           </div>
-          <div class="stats-container col-xs-12 col-sm-6 col-md-4 col-lg-4">
-            <span class="card-pf-utilization-card-details-count stats-count">{{configuration.active_admins}}</span>
-            <span class="card-pf-utilization-card-details-description stats-description">
-              <span
-                class="card-pf-utilization-card-details-line-2 stats-text"
-              >{{$t('dashboard.active_admins')}}</span>
-            </span>
-          </div>
           <a
             target="_blank"
             :href="configuration.public_url"

@@ -65,13 +65,7 @@ if ($cmd eq 'configuration') {
   my @isect = grep { $webtop_users{$_} } @provider_users;
   my $users = scalar(@isect);
   
-  $query = $webtopdb->prepare("select count(*) from core.users where user_id = 'admin';");
-  $query->execute();
-  @row = $query->fetchrow_array;
-  my $admins = $row[0];
-  
   $ret->{'configuration'}{'active_users'} = $users;
-  $ret->{'configuration'}{'active_admins'} = $admins;
   
   # read pass and check if is changed
   $query = $webtopdb->prepare("select password_type,password from core.local_vault where user_id = 'admin';");
