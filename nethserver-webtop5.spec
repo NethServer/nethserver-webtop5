@@ -43,7 +43,7 @@ mkdir -p root/usr/share/webtop/bin/
 mkdir -p root/usr/share/webtop/updates/pre
 mkdir -p root/usr/share/webtop/updates/post/main
 
-mkdir -p root/etc/webtop
+mkdir -p root/etc/webtop/webtop5
 
 for source in %{SOURCE4}
 do
