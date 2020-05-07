@@ -58,7 +58,7 @@ grant codeBase "file:${java.home}/lib/ext/-" {
 grant codeBase "file:/usr/share/java/tomcat-servlet-3.0-api.jar" {
         permission java.security.AllPermission;
 };
-grant codeBase "file:/usr/share/java/omcat-jsp-2.2-api.jar" {
+grant codeBase "file:/usr/share/java/tomcat-jsp-2.2-api.jar" {
         permission java.security.AllPermission;
 };
 grant codeBase "file:/usr/share/java/tomcat-el-2.2-api.jar" {
