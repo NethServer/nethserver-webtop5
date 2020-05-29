@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.1
+Version: 1.6.2
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -101,6 +101,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Fri May 29 2020 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.2-1
+- WebTop 5.8.5 - NethServer/dev#6181
+
 * Tue May 19 2020 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.1-1
   - Update catalina.policy (#79)
 
