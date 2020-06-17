@@ -15,7 +15,9 @@
       <div class="row rowstats">
         <div class="content">
           <div class="stats-container col-xs-12 col-sm-6 col-md-4 col-lg-4">
-            <span class="card-pf-utilization-card-details-count stats-count">{{configuration.active_users}}</span>
+            <span class="card-pf-utilization-card-details-count stats-count" :title="configuration.active_users">
+              {{configuration.active_users | humanFormat}}
+            </span>
             <span class="card-pf-utilization-card-details-description stats-description">
               <span
                 class="card-pf-utilization-card-details-line-2 stats-text"
