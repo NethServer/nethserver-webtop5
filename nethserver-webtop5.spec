@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.2
+Version: 1.6.3
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -101,6 +101,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Thu Jul 02 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.6.3-1
+- Human readable numbers in Cockpit dashboards - NethServer/dev#6206
+
 * Fri May 29 2020 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.2-1
 - WebTop 5.8.5 - NethServer/dev#6181
 
