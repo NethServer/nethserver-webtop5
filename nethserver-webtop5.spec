@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.3
+Version: 1.6.4
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -101,6 +101,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Mon Jul 06 2020 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.4-1
+- WebTop: automatic restart of tomcat8@webtop service on failure - NethServer/dev#6220
+
 * Thu Jul 02 2020 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.6.3-1
 - Human readable numbers in Cockpit dashboards - NethServer/dev#6206
 
