@@ -33,8 +33,6 @@ import About from './views/About.vue'
 import UtilService from "./services/util"
 import "./filters/filters"
 
-window.c3 = require('c3'); //// todo used?
-
 Vue.config.productionTip = false
 Vue.use(VueToggleButton);
 Vue.component('doc-info', DocInfo);

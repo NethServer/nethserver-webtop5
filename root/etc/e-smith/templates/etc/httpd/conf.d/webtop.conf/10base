@@ -2,8 +2,38 @@
 # 10base -- WebTop configuration
 #
 
+{
+    my $vhost = $webtop{'VirtualHost'} || '';
+
+    my $config = '
 ProxyPass /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPass /webtop http://127.0.0.1:58080/webtop
-ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
+ProxyPassReverse /webtop http://127.0.0.1:58080/webtop';
 
+    if ($vhost ne '') {
+        $OUT .= "<VirtualHost *:80>\n";
+        $OUT .= "    IncludeOptional conf.d/default-virtualhost.inc\n";
+        $OUT .= "</VirtualHost>\n\n";
+
+        $OUT .= "<VirtualHost *:80>\n";
+        $OUT .= "  ServerName $vhost\n";
+        $OUT .= "  Redirect / https://$vhost/\n";
+        $OUT .= "</VirtualHost>\n\n";
+
+        $OUT .= "<VirtualHost *:443>\n";
+        $OUT .= "  ServerName $vhost\n";
+        $OUT .= "  SSLEngine on\n";
+        $OUT .= "  RewriteCond %\{HTTPS\} !=on\n";
+        $OUT .= "  RewriteRule (.*) https://%\{SERVER_NAME\}%\{REQUEST_URI\} [END,QSA,R=permanent]\n\n";
+        
+        $OUT .= "  ProxyPass / http://127.0.0.1:58080/webtop\n";
+        $OUT .= "  ProxyPassReverse / http://127.0.0.1:58080/webtop\n";
+        # $OUT .= "  ProxyPass /push ws://127.0.0.1:58080/webtop/push\n"; ////
+        # $OUT .= "  ProxyPassReverse /push ws://127.0.0.1:58080/webtop/push\n"; ////
+
+        $OUT .= "\n</VirtualHost>\n";
+    }
+
+    $OUT .= $config;
+}

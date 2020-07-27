@@ -28,7 +28,10 @@
         "min_memory": "Minimum memory",
         "max_memory": "Maximum memory",
         "not_a_number_min": "Value is not a number or is higher than maximum memory",
-        "not_a_number_max": "Value is not a number or is lower than minimum memory"
+        "not_a_number_max": "Value is not a number or is lower than minimum memory",
+        "use_virtualhost": "Use a virtual host for WebTop",
+        "virtualhost_certificate": "If you're using a Let's Encrypt certificate, remember to add the host name below to the \"Domains\" field inside the \"Server certificate\" page",
+        "virtual_host_name": "Virtual host name"
     },
     "about": {
         "title": "About",
@@ -39,7 +42,8 @@
         "InvalidPublicUrl": "Not valid public URL",
         "InvalidDavServerUrl": "Not valid DAV server URL",
         "InvalidNethvoiceWebrestUrl": "Not valid NethVoice webrest URL or PBX Provider is not set to nethvoice",
-        "MaxMemoryHighThanMin": "Maximum memory must be higher than minimum memory"
+        "MaxMemoryHighThanMin": "Maximum memory must be higher than minimum memory",
+        "invalid_virtualhost": "Invalid virtual host"
     },
     "logs": {
         "title": "Logs",
@@ -86,5 +90,6 @@
     "of": "of",
     "rows_per_page": "Rows per page",
     "search": "Search",
-    "all": "All"
+    "all": "All",
+    "warning": "Warning"
 }

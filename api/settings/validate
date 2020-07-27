@@ -37,6 +37,9 @@ $v->declareParameter('DefaultToolbarIconsSize', $v->createValidator()->memberOf(
 $v->declareParameter('MinMemory', Validate::POSITIVE_INTEGER);
 $v->declareParameter('MaxMemory', Validate::POSITIVE_INTEGER);
 
+$virtualHostValidator = $v->createValidator()->orValidator($v->createValidator()->hostname(2), $v->createValidator()->isEmpty());
+$v->declareParameter('VirtualHost', $virtualHostValidator);
+
 if ($data['configuration']['PublicUrl']) {
   if (! filter_var($v->parameters['PublicUrl'], FILTER_VALIDATE_URL) || (strpos($v->parameters['PublicUrl'], 'http') !== 0 )) {
     $v->addValidationError('PublicUrl', 'InvalidPublicUrl', $v->parameters['PublicUrl']);
