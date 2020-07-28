@@ -17,6 +17,11 @@ ProxyPassReverse /webtop http://127.0.0.1:58080/webtop';
         $OUT .= "</VirtualHost>\n\n";
 
         $OUT .= "<VirtualHost *:80>\n";
+        $OUT .= "   ServerName $vhost\n";
+        $OUT .= "   RedirectMatch 301 ^(?!/.well-known/acme-challenge/).* https://$vhost\n";
+        $OUT .= "</VirtualHost>\n\n";
+
+        $OUT .= "<VirtualHost *:80>\n";
         $OUT .= "  ServerName $vhost\n";
         $OUT .= "  Redirect / https://$vhost/\n";
         $OUT .= "</VirtualHost>\n\n";
