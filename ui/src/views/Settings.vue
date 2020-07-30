@@ -81,42 +81,6 @@
                 <span v-if="errors.DefaultToolbarIconsSize.hasError" class="help-block">{{$t('settings.not_valid_default_toolbar_icons_size')}}</span>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">
-                {{$t('settings.use_virtualhost')}}
-              </label>
-              <div class="col-sm-5">
-                <toggle-button
-                  class="min-toggle"
-                  :width="40"
-                  :height="20"
-                  :color="{checked: '#0088ce', unchecked: '#bbbbbb'}"
-                  :value="configuration.UseVirtualHost"
-                  :sync="true"
-                  @change="toggleVirtualHost()"
-                />
-              </div>
-            </div>
-            <div v-show="configuration.UseVirtualHost" class="alert alert-warning alert-dismissable">
-              <span class="pficon pficon-warning-triangle-o"></span>
-              <strong>{{$t('warning')}}</strong>: <span >{{$t('settings.virtualhost_certificate')}}</span>.
-            </div>
-            <div v-show="configuration.UseVirtualHost" :class="['form-group', errors.VirtualHost.hasError ? 'has-error' : '']">
-              <label
-                class="col-sm-2 control-label"
-              >{{$t('settings.virtual_host_name')}}</label>
-              <div class="col-sm-5">
-                <input
-                  class="form-control"
-                  type="text"
-                  v-model="configuration.VirtualHost"
-                />
-                <span v-if="errors.VirtualHost.hasError" class="help-block">
-                  {{$t('validation.invalid_virtualhost')}}
-                </span>
-              </div>
-            </div>
-            
             <!-- advanced menu -->
             <legend class="fields-section-header-pf" aria-expanded="true">
               <span
@@ -243,6 +207,47 @@
                     :placeholder="configuration.PlaceholderDavServerUrl"
                   >
                   <span v-if="errors.DavServerUrl.hasError" class="help-block">{{$t('settings.not_valid_dav_server_url')}}</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">
+                  {{$t('settings.use_virtualhost')}}
+                </label>
+                <div class="col-sm-5">
+                  <toggle-button
+                    class="min-toggle"
+                    :width="40"
+                    :height="20"
+                    :color="{checked: '#0088ce', unchecked: '#bbbbbb'}"
+                    :value="configuration.UseVirtualHost"
+                    :sync="true"
+                    @change="toggleVirtualHost()"
+                  />
+                </div>
+              </div>
+              <div v-show="configuration.UseVirtualHost" class="alert alert-warning alert-dismissable">
+                <span class="pficon pficon-warning-triangle-o"></span>
+                <strong>{{$t('warning')}}</strong>: <span >{{$t('settings.virtualhost_certificate')}}</span>.
+              </div>
+              <div v-show="configuration.UseVirtualHost" :class="['form-group', errors.VirtualHost.hasError ? 'has-error' : '']">
+                <label class="col-sm-2 control-label">
+                  {{$t('settings.virtual_host_name')}}
+                  <doc-info
+                    :placement="'top'"
+                    :title="$t('settings.virtual_host_name')"
+                    :chapter="'VirtualHost'"
+                    :inline="true"
+                  ></doc-info>
+                </label>
+                <div class="col-sm-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    v-model="configuration.VirtualHost"
+                  />
+                  <span v-if="errors.VirtualHost.hasError" class="help-block">
+                    {{$t('validation.invalid_virtualhost')}}
+                  </span>
                 </div>
               </div>
             </div>
