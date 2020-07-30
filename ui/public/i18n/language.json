@@ -30,7 +30,7 @@
         "not_a_number_min": "Value is not a number or is higher than maximum memory",
         "not_a_number_max": "Value is not a number or is lower than minimum memory",
         "use_virtualhost": "Use a virtual host for WebTop",
-        "virtualhost_certificate": "If you're using a Let's Encrypt certificate, remember to add the host name below to the \"Domains\" field inside the \"Server certificate\" page",
+        "virtualhost_certificate": "If you're using a Let's Encrypt certificate, remember to add the host name below to the \"Domains\" field inside \"System\" > \"Certificates\" > \"Request Let's Encrypt certificate\"",
         "virtual_host_name": "Virtual host name"
     },
     "about": {
