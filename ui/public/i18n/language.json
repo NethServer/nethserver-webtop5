@@ -82,7 +82,7 @@
         "PbxProviderNethvoiceWebrestUrl": "NethVoice base url for API calls, used when PbxProvider is set to nethvoice.",
         "MinMemory": "Minimum memory of Tomcat instance. Value is expressed in MB.",
         "MaxMemory": "Maximum memory of Tomcat instance. Value is expressed in MB.",
-        "VirtualHost": "<p>Alias to WebTop application and related services.</p><p>It can be used to access WebTop or configure ActiveSync/CalDAV/CardDAV clients.</p><p>Virtual host is used in download URLs (unless <b>Public URL</b> has been defined) and in calendar/addressbook URLs (unless <b>DAV server URL</b> has been defined).</p>"
+        "VirtualHost": "<p>Alias to WebTop application and related services.</p><p>It can be used to access WebTop and configure ActiveSync/CalDAV/CardDAV clients.</p><p>Virtual host is used in download URLs (unless <b>Public URL</b> has been defined) and in calendar/addressbook URLs (unless <b>DAV server URL</b> has been defined).</p>"
     },
     "save": "Save",
     "cancel": "Cancel",
