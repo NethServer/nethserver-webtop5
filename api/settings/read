@@ -45,6 +45,7 @@ if ($cmd eq 'configuration') {
     $ret->{'configuration'}{'PbxProviderNethvoiceWebrestUrl'} = $db->get_prop('webtop', 'PbxProviderNethvoiceWebrestUrl');
     $ret->{'configuration'}{'MinMemory'} = $db->get_prop('webtop', 'MinMemory');
     $ret->{'configuration'}{'MaxMemory'} = $db->get_prop('webtop', 'MaxMemory');
+    $ret->{'configuration'}{'VirtualHost'} = $db->get_prop('webtop', 'VirtualHost');
     
     my @localelist = split("\n", `/etc/e-smith/events/actions/nethserver-webtop5-locale-tz`);
     $ret->{'configuration'}{'LocaleList'} = \@localelist;

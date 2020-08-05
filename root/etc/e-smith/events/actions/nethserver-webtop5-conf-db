@@ -111,13 +111,28 @@ print $fh "DELETE FROM \"core\".\"media_types\" WHERE extension = 'zip' AND medi
 print $fh "INSERT INTO \"core\".\"media_types\" (\"extension\", \"media_type\") VALUES ('zip', 'application/zip');\n";
 
 # Set also public url
-my $public_url = $db->get_prop('webtop','PublicUrl') || 'http://'.$db->get('SystemName')->prop('type').'.'.$domain.'/webtop';
+my $public_url_or_vhost = '';
+
+if ($db->get_prop('webtop','PublicUrl') ne "") {
+    $public_url_or_vhost = $db->get_prop('webtop','PublicUrl');
+} elsif ($db->get_prop('webtop','VirtualHost') ne "") {
+    $public_url_or_vhost = 'http://'.$db->get_prop('webtop','VirtualHost').'/webtop';
+}
+my $public_url = $public_url_or_vhost || 'http://'.$db->get('SystemName')->prop('type').'.'.$domain.'/webtop';
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'public.url';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'public.url', '$public_url');\n";
 
 # Set dav server url
-my $davserver_url = $db->get_prop('webtop','DavServerUrl') || 'https://'.$db->get('SystemName')->prop('type').'.'.$domain.'/webtop-dav/server.php';
+my $davserver_url_or_vhost = '';
+
+if ($db->get_prop('webtop','DavServerUrl') ne "") {
+    $davserver_url_or_vhost = $db->get_prop('webtop','DavServerUrl');
+} elsif ($db->get_prop('webtop','VirtualHost') ne "") {
+    $davserver_url_or_vhost = 'https://'.$db->get_prop('webtop','VirtualHost').'/webtop-dav/server.php';
+}
+
+my $davserver_url = $davserver_url_or_vhost || 'https://'.$db->get('SystemName')->prop('type').'.'.$domain.'/webtop-dav/server.php';
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'davserver.url';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'davserver.url', '$davserver_url');\n";

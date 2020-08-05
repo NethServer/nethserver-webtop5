@@ -35,7 +35,6 @@ my $db = esmith::ConfigDB->open();
 
 my $input = readInput();
 my %props = ();
-my %props2 = ();
 
    %props = (
       'DefaultLocale' => $input->{'configuration'}->{'DefaultLocale'},
@@ -46,7 +45,8 @@ my %props2 = ();
       'PbxProvider' => $input->{'configuration'}->{'PbxProvider'},
       'PbxProviderNethvoiceWebrestUrl' => $input->{'configuration'}->{'PbxProviderNethvoiceWebrestUrl'},
       'MinMemory' => $input->{'configuration'}->{'MinMemory'},
-      'MaxMemory' => $input->{'configuration'}->{'MaxMemory'}
+      'MaxMemory' => $input->{'configuration'}->{'MaxMemory'},
+      'VirtualHost' => $input->{'configuration'}->{'VirtualHost'},
   );
     
 if($input->{'action'} eq 'edit') {

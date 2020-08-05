@@ -81,7 +81,6 @@
                 <span v-if="errors.DefaultToolbarIconsSize.hasError" class="help-block">{{$t('settings.not_valid_default_toolbar_icons_size')}}</span>
               </div>
             </div>
-            
             <!-- advanced menu -->
             <legend class="fields-section-header-pf" aria-expanded="true">
               <span
@@ -210,6 +209,47 @@
                   <span v-if="errors.DavServerUrl.hasError" class="help-block">{{$t('settings.not_valid_dav_server_url')}}</span>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">
+                  {{$t('settings.use_virtualhost')}}
+                </label>
+                <div class="col-sm-5">
+                  <toggle-button
+                    class="min-toggle"
+                    :width="40"
+                    :height="20"
+                    :color="{checked: '#0088ce', unchecked: '#bbbbbb'}"
+                    :value="configuration.UseVirtualHost"
+                    :sync="true"
+                    @change="toggleVirtualHost()"
+                  />
+                </div>
+              </div>
+              <div v-show="configuration.UseVirtualHost" class="alert alert-warning alert-dismissable">
+                <span class="pficon pficon-warning-triangle-o"></span>
+                <strong>{{$t('warning')}}</strong>: <span >{{$t('settings.virtualhost_certificate')}}</span>.
+              </div>
+              <div v-show="configuration.UseVirtualHost" :class="['form-group', errors.VirtualHost.hasError ? 'has-error' : '']">
+                <label class="col-sm-2 control-label">
+                  {{$t('settings.virtual_host_name')}}
+                  <doc-info
+                    :placement="'top'"
+                    :title="$t('settings.virtual_host_name')"
+                    :chapter="'VirtualHost'"
+                    :inline="true"
+                  ></doc-info>
+                </label>
+                <div class="col-sm-5">
+                  <input
+                    class="form-control"
+                    type="text"
+                    v-model="configuration.VirtualHost"
+                  />
+                  <span v-if="errors.VirtualHost.hasError" class="help-block">
+                    {{$t('validation.invalid_virtualhost')}}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <!-- save button -->
@@ -255,7 +295,9 @@ export default {
         MinMemory: 512,
         MaxMemory: 1024,
         PlaceholderPublicUrl: null,
-        PlaceholderDavServerUrl: null
+        PlaceholderDavServerUrl: null,
+        VirtualHost: '',
+        UseVirtualHost: false
       },
       errors: this.initErrors(),
       advanced: false
@@ -279,6 +321,7 @@ export default {
         function(success) {
           try {
             context.configuration = JSON.parse(success).configuration;
+            context.configuration.UseVirtualHost = context.configuration.VirtualHost !== '';
           } catch (e) {
             console.error(e);
           }
@@ -291,6 +334,7 @@ export default {
     },
     saveConfig() {
       var context = this;
+      var virtualHost = context.configuration.UseVirtualHost ? context.configuration.VirtualHost : '';
       var settingsObj = {
         action: "edit",
         "configuration": {
@@ -302,7 +346,8 @@ export default {
           PbxProvider: context.configuration.PbxProvider,
           PbxProviderNethvoiceWebrestUrl: context.configuration.PbxProviderNethvoiceWebrestUrl,
           MinMemory: context.configuration.MinMemory,
-          MaxMemory: context.configuration.MaxMemory
+          MaxMemory: context.configuration.MaxMemory,
+          VirtualHost: virtualHost
         }
       };
       context.loaders = true;
@@ -389,11 +434,19 @@ export default {
         MaxMemory: {
           hasError: false,
           message: ""
+        },
+        VirtualHost: {
+          hasError: false,
+          message: ""
         }
       }
     },
     toggleAdvancedMode() {
       this.advanced = !this.advanced;
+      this.$forceUpdate();
+    },
+    toggleVirtualHost() {
+      this.configuration.UseVirtualHost = !this.configuration.UseVirtualHost;
       this.$forceUpdate();
     }
   }

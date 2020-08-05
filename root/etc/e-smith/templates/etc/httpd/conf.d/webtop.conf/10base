@@ -2,8 +2,17 @@
 # 10base -- WebTop configuration
 #
 
+{
+    my $vhost = $webtop{'VirtualHost'} || '';
+
+    if ($vhost ne '') {
+        $OUT .= "<If \"%{HTTP_HOST} == '$vhost'\">\n";
+        $OUT .= "    RedirectMatch ^/\$ \"https://$vhost/webtop\"\n";
+        $OUT .= "</If>\n";
+    }
+}
+
 ProxyPass /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPass /webtop http://127.0.0.1:58080/webtop
 ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
-
