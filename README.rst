@@ -6,7 +6,7 @@ WebTop 5 is a full-featured groupware written in Java.
 
 It's composed by three parts:
 
-* Java web application running on Tomcat 7
+* Java web application running on Tomcat 8
 * PHP implementation of Active Sync protocol
 * PHP implementation of CardDAV and CalDAV protocol
 * PostgreSQL database
@@ -15,9 +15,8 @@ Access to web application is forced in SSL mode.
 
 WebTop 5 has been split in 4 different RPMs:
 
-- webtop5-core: Tomcat webapp, derived from a WAR. It contains all jars developed by Sonicle. This package will be updated at each
+- webtop5: Tomcat webapp and all third-party jars, derived from a WAR. It contains all jars developed by Sonicle. This package will be updated at each
   WebTop release
-- webtop5-libs: derived from a WAR, it contains all third-party jars. This package will be seldom updated
 - webtop5-zpush: ActiveSync implementation for WebTop, it contains PHP code from z-push project (http://z-push.org/)
 - webtop5-webdav: CardDAV and CalDAV implementation for WebTop, it contains PHP code from sabre/dav project (http://sabre.io/dav/)
 - nethserver-webtop5: NethServer auto-configuration for WebTop
@@ -90,7 +89,7 @@ The web application logs are inside ``/var/log/webtop/webtop.log``.
 Tomcat
 ------
 
-Tomcat instance is managed by systemd unit called ``tomcat@webtop``.
+Tomcat instance is managed by systemd unit called ``tomcat8@webtop``.
 All logs are saved inside ``/var/lib/tomcats/webtop/logs/`` directory.
 The logs are rotated daily and deletes after 2 days.
 
@@ -102,7 +101,7 @@ All logs are inside ``/var/log/z-push/`` directory.
 
 To inspect z-push status use: ::
 
-    php /usr/share/webtop/z-push/z-push-admin.php
+    sudo -u apache scl enable rh-php72 'php /usr/share/webtop/z-push/z-push-admin.php'
 
 It is also possibile to enable z-push debug using these commands: ::
 
@@ -161,5 +160,5 @@ Tomcat instance
 WebTop uses its own Tomcat instance running on port ``58080``.
 
 The instance is launched with some special Java options,
-see content of ``/etc/sysconfig/tomcat@webtop``.
+see content of ``/etc/sysconfig/tomcat8@webtop``.
 
