@@ -14,5 +14,5 @@
 
 ProxyPass /webtop/push ws://127.0.0.1:58080/webtop/push
 ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
-ProxyPass /webtop http://127.0.0.1:58080/webtop
+ProxyPass /webtop http://127.0.0.1:58080/webtop timeout=180
 ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
