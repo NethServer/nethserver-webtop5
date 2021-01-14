@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.7
+Version: 1.6.8
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -101,6 +101,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Thu Jan 14 2021 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.8-1
+- Webtop 5.10.0 - NethServer/dev#6368
+
 * Mon Dec 07 2020 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.7-1
 - Webtop 5.9.5 - NethServer/dev#6338
   - httpd: set timeout to 180 for `/webtop` ProxyPass
