@@ -24,7 +24,12 @@ input=$(cat)
 action=$(jq -r .action <<<"$input")
 protocol=$(jq -r .location.protocol <<<"$input")
 host=$(jq -r .location.hostname <<<"$input")
+virtualhost=$(/sbin/e-smith/config getprop webtop VirtualHost)
 
 if [[ $action == "app-info" ]]; then
-    printf '{"url":"%s"}' "${protocol}//${host}/webtop"
+    if [[ -z "$virtualhost" ]]; then
+        printf '{"url":"%s"}' "${protocol}//${host}/webtop"
+    else
+        printf '{"url":"%s"}' "${protocol}//${virtualhost}"
+    fi
 fi

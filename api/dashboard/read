@@ -25,6 +25,7 @@ use warnings;
 use DBI;
 use JSON;
 use NethServer::Password;
+use esmith::ConfigDB;
 
 require '/usr/libexec/nethserver/api/lib/helper_functions.pl';
 
@@ -80,7 +81,10 @@ if ($cmd eq 'configuration') {
   }
   
   $ret->{'configuration'}{'admin_pass_warn'} = $warn;
-  
+
+  # get virtualhost from configuration
+  my $db = esmith::ConfigDB->open_ro();
+  $ret->{'configuration'}{'VirtualHost'} = $db->get_prop('webtop', 'VirtualHost');
 } else {
     error();
 }

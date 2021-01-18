@@ -26,7 +26,7 @@
           </div>
           <a
             target="_blank"
-            :href="configuration.public_url"
+            :href="configuration.app_url"
             class="btn btn-primary btn-lg open-app"
           >{{$t('dashboard.open_app')}}</a>
         </div>
@@ -79,7 +79,7 @@ export default {
       configuration: {
         active_users: 0,
         version: {},
-        public_url: null,
+        app_url: null,
         admin_pass_warn: false
       }
     };
@@ -109,7 +109,11 @@ export default {
             });
             context.configuration.version = sorted;
             
-            context.configuration.public_url = "http://" + window.location.host.split(":")[0] + "/webtop";
+            if (context.configuration.VirtualHost) {
+              context.configuration.app_url = "https://" + context.configuration.VirtualHost;
+            } else {
+              context.configuration.app_url = "http://" + window.location.host.split(":")[0] + "/webtop";
+            }
           } catch (e) {
             console.error(e);
           }
