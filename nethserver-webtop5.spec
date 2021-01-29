@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.9
+Version: 1.6.10
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -101,6 +101,10 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Fri Jan 29 2021 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.10-1
+- Webtop 5.10.1 - NethServer/dev#6402
+  - spec: require webtop5 >= 1.4.11
+
 * Mon Jan 18 2021 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.6.9-1
 - WebTop: wrong URL and logo if virtual host is enabled - Bug NethServer/dev#6398
 
