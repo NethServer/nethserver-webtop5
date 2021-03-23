@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %\{HTTP:Upgrade\} websocket [NC]
+RewriteCond %\{HTTP:Connection\} upgrade [NC]
+RewriteRule .* ws://127.0.0.1:58080/webtop/push%\{REQUEST_URI\} [P,L]
+
+RewriteEngine on
+RewriteCond %\{REQUEST_URI\} !/webtop/index.*
+RewriteRule .* http://127.0.0.1:58080%\{REQUEST_URI\} [P,L]

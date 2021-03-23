@@ -45,6 +45,8 @@ mkdir -p root/usr/share/webtop/updates/post/main
 
 mkdir -p root/etc/webtop/webtop
 
+mkdir -p root/var/www/html/webtop
+
 for source in %{SOURCE4}
 do
     cp $source root/usr/share/webtop
