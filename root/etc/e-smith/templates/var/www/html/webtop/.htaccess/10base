@@ -1,3 +1,7 @@
+#
+# 10base -- WebTop .htaccess configuration
+#
+
 RewriteEngine on
 RewriteCond %\{HTTP:Upgrade\} websocket [NC]
 RewriteCond %\{HTTP:Connection\} upgrade [NC]
