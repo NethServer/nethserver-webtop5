@@ -38,7 +38,7 @@ my %locales = (
         DATE_FORMAT_SHORT => 'd/M/yy',
         TIME_FORMAT_SHORT => 'HH:mm',
         TIME_FORMAT_LONG => 'HH:mm:ss'
-    }
+    },
     'hr_HR' => {
         LANGUAGE => 'hr_HR',
         START_DAY => '1',
