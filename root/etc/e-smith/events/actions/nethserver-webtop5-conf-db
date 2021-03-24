@@ -110,6 +110,9 @@ print $fh $query;
 print $fh "DELETE FROM \"core\".\"media_types\" WHERE extension = 'zip' AND media_type = 'application/zip';\n";
 print $fh "INSERT INTO \"core\".\"media_types\" (\"extension\", \"media_type\") VALUES ('zip', 'application/zip');\n";
 
+# Create tablefunc extension if not already exist
+print $fh "CREATE EXTENSION IF NOT EXISTS tablefunc;\n";
+
 # Set also public url
 my $public_url_or_vhost = '';
 
