@@ -44,8 +44,7 @@ event_templates($event,
                      '/etc/webtop/webtop/data-sources.xml',
                      '/usr/share/webtop/z-push/config.json',
                      '/usr/share/webtop/webdav/config.json',
-                     '/etc/sysconfig/tomcat8@webtop',
-                     '/var/www/html/webtop/.htaccess'
+                     '/etc/sysconfig/tomcat8@webtop'
 );
 event_services($event, 
                      'tomcat8@webtop' => 'restart',
