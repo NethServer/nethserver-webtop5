@@ -23,6 +23,38 @@ my %locales = (
         TIME_FORMAT_SHORT => 'h:mm a',
         TIME_FORMAT_LONG => 'h:mm:ss a'
     },
+    'de_DE' => {
+        LANGUAGE => 'de_DE',
+        START_DAY => '1',
+        DATE_FORMAT_LONG => 'dd MMM yyyy',
+        DATE_FORMAT_SHORT => 'dd.MM.yyyy',
+        TIME_FORMAT_SHORT => 'HH:mm',
+        TIME_FORMAT_LONG => 'HH:mm:ss'
+    },
+    'es_ES' => {
+        LANGUAGE => 'es_ES',
+        START_DAY => '1',
+        DATE_FORMAT_LONG => 'dd. MMM yyyy.',
+        DATE_FORMAT_SHORT => 'd/M/yy',
+        TIME_FORMAT_SHORT => 'HH:mm',
+        TIME_FORMAT_LONG => 'HH:mm:ss'
+    },
+    'hr_HR' => {
+        LANGUAGE => 'hr_HR',
+        START_DAY => '1',
+        DATE_FORMAT_LONG => 'dd. MMM yyyy.',
+        DATE_FORMAT_SHORT => 'dd. MM. yyyy.',
+        TIME_FORMAT_SHORT => 'HH:mm',
+        TIME_FORMAT_LONG => 'HH:mm:ss'
+    },
+    'hu_HU' => {
+        LANGUAGE => 'hu_HU',
+        START_DAY => '1',
+        DATE_FORMAT_LONG => 'yyyy. MMMM dd.',
+        DATE_FORMAT_SHORT => 'yyyy.MM.dd.',
+        TIME_FORMAT_SHORT => 'HH:mm',
+        TIME_FORMAT_LONG => 'HH:mm:ss'
+    }
 );
 
 if ( ! $event ) {
