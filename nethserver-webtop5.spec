@@ -300,3 +300,4 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 
 * Wed Mar 08 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
 - WebTop 5 - NethServer/dev#5225
+
