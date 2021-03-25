@@ -16,6 +16,7 @@ Requires: perl-libintl, perl-DBD-Pg
 Requires: webtop5 >= 1.4.15, webtop5-zpush, webtop5-webdav
 Requires: tomcat8, java-1.8.0-openjdk
 Requires: nethserver-rh-php72-php-fpm
+Requires: postgresql-contrib
 
 BuildRequires: perl, java-1.8.0-openjdk-devel
 BuildRequires: nethserver-devtools
