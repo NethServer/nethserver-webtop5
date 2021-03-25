@@ -12,7 +12,12 @@
     }
 }
 
-ProxyPass /webtop/push ws://127.0.0.1:58080/webtop/push
-ProxyPassReverse /webtop/push ws://127.0.0.1:58080/webtop/push
-ProxyPass /webtop http://127.0.0.1:58080/webtop timeout=180
+<Directory /var/www/html/webtop>
+  AllowOverride All
+</Directory>
+
+<Proxy "http://127.0.0.1:58080/webtop">
+  ProxySet timeout=180
+</Proxy>
+
 ProxyPassReverse /webtop http://127.0.0.1:58080/webtop
