@@ -2,6 +2,8 @@
 # WebTop .htaccess configuration
 #
 
+RequestHeader unset X-Forwarded-For
+
 RewriteEngine on
 RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteCond %{HTTP:Connection} upgrade [NC]
