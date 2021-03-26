@@ -46,6 +46,9 @@ Available properties:
 * ``RemoteCategoryAutosync``: if set to ``enabled`` , it enables remote categories auto-sync functionality. The sincronization interval can be set by user on remote category creation. Default is ``enabled``
 * ``RemoteCategoryAutosyncOnlywhenonline``: if set to ``enabled`` the remote categoties is auto-sync only when category’s owner is online during the sincronization time. Default is ``disabled``
 * ``VirtualHost``: set custom virtual host, e.g. `mygroupware.mydomain.it`. Virtual host can be used to access WebTop and configure ActiveSync/CalDAV/CardDAV clients
+* ``KnownDeviceVerification``: if set to ``enabled``, a notification will be sent for any new authentication attempt from an unknown-device, default ``disabled``
+* ``KnownDeviceVerificationRecipients``: a comma-separated list of email addresses to use as CCN recipients that will receive a copy of the unknown-device notice
+* ``KnownDeviceVerificationNetWhitelist``: a comma-separated list of networks, specified in CIDR format, from where all devices will be considered trusted, and no notifications will be sent
 
 Example: ::
 
