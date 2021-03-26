@@ -198,28 +198,48 @@ print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\"
 
 # Set remote calendar automatic synchronization
 my $remote_calendar_autosync = $db->get_prop('webtop','RemoteCalendarAutosync') || 'enabled';
-if ($remote_calendar_autosync eq "enabled") { $remote_calendar_autosync = "true"; } elsif ($remote_calendar_autosync eq "disabled") { $remote_calendar_autosync = "false"; }
+
+if ($remote_calendar_autosync eq "enabled") {
+	$remote_calendar_autosync = "true";
+} elsif ($remote_calendar_autosync eq "disabled") {
+	$remote_calendar_autosync = "false";
+}
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.calendar' and key = 'calendar.remote.autosync.enabled';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.calendar', 'calendar.remote.autosync.enabled', '$remote_calendar_autosync');\n";
 
 # Set remote calendar automatic synchronization only when user is online
 my $remote_calendar_autosync_onlywhenonline = $db->get_prop('webtop','RemoteCalendarAutosyncOnlywhenonline') || 'disabled';
-if ($remote_calendar_autosync_onlywhenonline eq "enabled") { $remote_calendar_autosync_onlywhenonline = "true"; } elsif ($remote_calendar_autosync_onlywhenonline eq "disabled") { $remote_calendar_autosync_onlywhenonline = "false"; }
+
+if ($remote_calendar_autosync_onlywhenonline eq "enabled") {
+	$remote_calendar_autosync_onlywhenonline = "true";
+} elsif ($remote_calendar_autosync_onlywhenonline eq "disabled") {
+	$remote_calendar_autosync_onlywhenonline = "false";
+}
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.calendar' and key = 'calendar.remote.autosync.onlywhenonline';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.calendar', 'calendar.remote.autosync.onlywhenonline', '$remote_calendar_autosync_onlywhenonline');\n";
 
 # Set remote category automatic synchronization
 my $remote_category_autosync = $db->get_prop('webtop','RemoteCategoryAutosync') || 'enabled';
-if ($remote_category_autosync eq "enabled") { $remote_category_autosync = "true"; } elsif ($remote_category_autosync eq "disabled") { $remote_category_autosync = "false"; }
+
+if ($remote_category_autosync eq "enabled") {
+	$remote_category_autosync = "true";
+} elsif ($remote_category_autosync eq "disabled") {
+	$remote_category_autosync = "false";
+}
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.contacts' and key = 'category.remote.autosync.enabled';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.contacts', 'category.remote.autosync.enabled', '$remote_category_autosync');\n";
 
 # Set remote category automatic synchronization only when user is online
 my $remote_category_autosync_onlywhenonline = $db->get_prop('webtop','RemoteCategoryAutosyncOnlywhenonline') || 'disabled';
-if ($remote_category_autosync_onlywhenonline eq "enabled") { $remote_category_autosync_onlywhenonline = "true"; } elsif ($remote_category_autosync_onlywhenonline eq "disabled") { $remote_category_autosync_onlywhenonline = "false"; }
+
+if ($remote_category_autosync_onlywhenonline eq "enabled") {
+	$remote_category_autosync_onlywhenonline = "true";
+} elsif ($remote_category_autosync_onlywhenonline eq "disabled") {
+	$remote_category_autosync_onlywhenonline = "false";
+}
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.contacts' and key = 'category.remote.autosync.onlywhenonline';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.contacts', 'category.remote.autosync.onlywhenonline', '$remote_category_autosync_onlywhenonline');\n";
@@ -246,7 +266,12 @@ if ($smtp_host eq 'localhost' && $smtp_port eq '587') {
 
 # Enable/Disable new device notifications alerts
 my $known_device_verification = $db->get_prop('webtop','KnownDeviceVerification') || 'disabled';
-if ($known_device_verification eq "enabled") { $known_device_verification = "true"; } elsif ($known_device_verification eq "disabled") { $known_device_verification = "false"; }
+
+if ($known_device_verification eq "enabled") {
+	$known_device_verification = "true";
+} elsif ($known_device_verification eq "disabled") {
+	$known_device_verification = "false";
+}
 
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'security.knowndeviceverification.enabled';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'security.knowndeviceverification.enabled', '$known_device_verification');\n";
