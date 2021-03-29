@@ -288,5 +288,19 @@ my $known_device_verification_netwhitelist = $db->get_prop('webtop','KnownDevice
 print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'security.knowndeviceverification.netwhitelist';\n";
 print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'security.knowndeviceverification.netwhitelist', '$known_device_verification_netwhitelist');\n";
 
+# Set the name for the Jitsi Meet instance
+print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'meeting.jitsi.name';\n";
+print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'meeting.jitsi.name', 'WebTop Meet');\n";
+
+# Prepend username of the creator into the  Jitsi Meet conference room's name
+print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'meeting.jitsi.meetingid.prependusername';\n";
+print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'meeting.jitsi.meetingid.prependusername', 'true');\n";
+
+# Set the URL of the Jitsi Meet instance
+my $conference_jitsi_url = $db->get_prop('conference','JitsiUrl') || "";
+
+print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'meeting.jitsi.url';\n";
+print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'meeting.jitsi.url', '$conference_jitsi_url');\n";
+
 # Execute SQL script
 system("su - postgres  -c 'psql webtop5 < ".$fh->filename."' >/dev/null");
