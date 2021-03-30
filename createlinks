@@ -92,3 +92,13 @@ $event = 'nethserver-sssd-save';
 event_actions($event, 'nethserver-webtop5-conf-db' => 50);
 
 event_services($event, 'tomcat8@webtop' => 'restart');
+
+#--------------------------------------------------
+# actions for nethserver-conference-save
+#--------------------------------------------------
+
+$event = 'nethserver-conference-save';
+
+event_actions($event, 'nethserver-webtop5-conf-db' => 50);
+
+event_services($event, 'tomcat8@webtop' => 'restart');

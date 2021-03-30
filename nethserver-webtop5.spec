@@ -11,6 +11,7 @@ Source5: jcharset-2.0.jar
 BuildArch: noarch
 
 Requires: nethserver-mail-server, nethserver-postgresql, nethserver-httpd
+Requires: nethserver-conference
 Requires: php-cli, php-pgsql
 Requires: perl-libintl, perl-DBD-Pg
 Requires: webtop5 >= 1.4.15, webtop5-zpush, webtop5-webdav
