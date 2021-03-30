@@ -31,7 +31,9 @@
         "not_a_number_max": "Value is not a number or is lower than minimum memory",
         "use_virtualhost": "Use a virtual host for WebTop",
         "virtualhost_certificate": "If you're using a Let's Encrypt certificate, remember to add the host name below to the \"Domains\" field inside \"System\" > \"Certificates\" > \"Request Let's Encrypt certificate\"",
-        "virtual_host_name": "Virtual host name"
+        "virtual_host_name": "Virtual host name",
+        "jitsi_meet_url": "Jitsi Meet URL",
+        "not_valid_jitsi_url": "Invalid Jitsi Meet URL"
     },
     "about": {
         "title": "About",
@@ -82,7 +84,8 @@
         "PbxProviderNethvoiceWebrestUrl": "NethVoice base url for API calls, used when PbxProvider is set to nethvoice.",
         "MinMemory": "Minimum memory of Tomcat instance. Value is expressed in MB.",
         "MaxMemory": "Maximum memory of Tomcat instance. Value is expressed in MB.",
-        "VirtualHost": "<p>Alias to WebTop application and related services.</p><p>It can be used to access WebTop and configure ActiveSync/CalDAV/CardDAV clients.</p><p>Virtual host is used in download URLs (unless <b>Public URL</b> has been defined) and in calendar/addressbook URLs (unless <b>DAV server URL</b> has been defined).</p>"
+        "VirtualHost": "<p>Alias to WebTop application and related services.</p><p>It can be used to access WebTop and configure ActiveSync/CalDAV/CardDAV clients.</p><p>Virtual host is used in download URLs (unless <b>Public URL</b> has been defined) and in calendar/addressbook URLs (unless <b>DAV server URL</b> has been defined).</p>",
+        "JitsiUrl": "URL of <a target=\"_blank\" href=\"https://jitsi.org/jitsi-meet/\">Jisi Meet</a> server configured for meetings"
     },
     "save": "Save",
     "cancel": "Cancel",

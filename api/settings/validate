@@ -52,6 +52,12 @@ if ($data['configuration']['DavServerUrl']) {
   }
 }
 
+if ($data['configuration']['JitsiUrl']) {
+  if (! filter_var($v->parameters['JitsiUrl'], FILTER_VALIDATE_URL) || (strpos($v->parameters['JitsiUrl'], 'http') !== 0 )) {
+    $v->addValidationError('JitsiUrl', 'InvalidJitsiUrl', $v->parameters['JitsiUrl']);
+  }
+}
+
 if ($data['configuration']['PbxProviderNethvoiceWebrestUrl']) {
   if (! filter_var($v->parameters['PbxProviderNethvoiceWebrestUrl'], FILTER_VALIDATE_URL) || (strpos($v->parameters['PbxProviderNethvoiceWebrestUrl'], 'http') !== 0 ) || $v->parameters['PbxProvider'] != "nethvoice") {
     $v->addValidationError('PbxProviderNethvoiceWebrestUrl', 'InvalidNethvoiceWebrestUrl', $v->parameters['PbxProviderNethvoiceWebrestUrl']);

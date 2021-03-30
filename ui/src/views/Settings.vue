@@ -209,6 +209,26 @@
                   <span v-if="errors.DavServerUrl.hasError" class="help-block">{{$t('settings.not_valid_dav_server_url')}}</span>
                 </div>
               </div>
+              <div :class="['form-group', errors.JitsiUrl.hasError ? 'has-error' : '']">
+                <label class="col-sm-2 control-label">
+                  {{$t('settings.jitsi_meet_url')}}
+                  <doc-info
+                    :placement="'top'"
+                    :title="$t('settings.jitsi_meet_url')"
+                    :chapter="'JitsiUrl'"
+                    :inline="true"
+                  ></doc-info>
+                </label>
+                <div class="col-sm-5">
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="configuration.JitsiUrl"
+                    placeholder="https://jitsi.example.com"
+                  >
+                  <span v-if="errors.JitsiUrl.hasError" class="help-block">{{$t('settings.not_valid_jitsi_url')}}</span>
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">
                   {{$t('settings.use_virtualhost')}}
@@ -347,7 +367,8 @@ export default {
           PbxProviderNethvoiceWebrestUrl: context.configuration.PbxProviderNethvoiceWebrestUrl,
           MinMemory: context.configuration.MinMemory,
           MaxMemory: context.configuration.MaxMemory,
-          VirtualHost: virtualHost
+          VirtualHost: virtualHost,
+          JitsiUrl: context.configuration.JitsiUrl,
         }
       };
       context.loaders = true;
@@ -438,7 +459,11 @@ export default {
         VirtualHost: {
           hasError: false,
           message: ""
-        }
+        },
+        JitsiUrl: {
+          hasError: false,
+          message: ""
+        },
       }
     },
     toggleAdvancedMode() {

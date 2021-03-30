@@ -29,7 +29,7 @@ require '/usr/libexec/nethserver/api/lib/helper_functions.pl';
 
 my $eventName = undef;
 my $ret;
-my $exitCode = 0;
+my $jitsiUrlChanged = 0;
 
 my $db = esmith::ConfigDB->open();
 
@@ -48,18 +48,25 @@ my %props = ();
       'MaxMemory' => $input->{'configuration'}->{'MaxMemory'},
       'VirtualHost' => $input->{'configuration'}->{'VirtualHost'},
   );
-    
+
+# Check if JitsiUrl has changed
+if ($db->get_prop('conference', 'JitsiUrl') ne $input->{'configuration'}->{'JitsiUrl'}) {
+    $jitsiUrlChanged = 1;
+}
+
 if($input->{'action'} eq 'edit') {
     $db->get('webtop')->merge_props(%props);
+
+    if ($jitsiUrlChanged) {
+        $db->get('conference')->set_prop('JitsiUrl', $input->{'configuration'}->{'JitsiUrl'});
+    }
 } else {
     error();
 }
 
 esmith::event::set_json_log(1);
 
-if(esmith::event::event_signal('nethserver-webtop5-update')) {
-    $ret = {'state' => 'success'};
-} else {
+if (not esmith::event::event_signal('nethserver-webtop5-update')) {
     $ret = {
         'type' => 'Error',
         'message' => 'webtop5.api_update_failed',
@@ -67,8 +74,24 @@ if(esmith::event::event_signal('nethserver-webtop5-update')) {
             'event_name' => 'nethserver-webtop5-update'
         }
     };
-    $exitCode = 1;
+    print encode_json($ret);
+    exit(1);
 }
 
-print encode_json($ret);
-exit($exitCode);
+if ($jitsiUrlChanged) {
+    # trigger event nethserver-conference-save
+    if (not esmith::event::event_signal('nethserver-conference-save')) {
+        $ret = {
+            'type' => 'Error',
+            'message' => 'webtop5.api_update_failed',
+            'attributes' => {
+                'event_name' => 'nethserver-conference-save'
+            }
+        };
+        print encode_json($ret);
+        exit(1);
+    }
+}
+
+print encode_json({'state' => 'success'});
+exit(0);
