@@ -1,3 +1,4 @@
+/var/log/webtop/webtop_auth.log
 /var/log/webtop/webtop.log {
     copytruncate
     missingok
