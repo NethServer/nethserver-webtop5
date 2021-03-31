@@ -99,6 +99,6 @@ event_services($event, 'tomcat8@webtop' => 'restart');
 
 $event = 'nethserver-conference-save';
 
-event_actions($event, 'nethserver-webtop5-conf-db' => 50);
+event_actions($event, 'nethserver-webtop5-conf-db-conference' => 50);
 
 event_services($event, 'tomcat8@webtop' => 'restart');
