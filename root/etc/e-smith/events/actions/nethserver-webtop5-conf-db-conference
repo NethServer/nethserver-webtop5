@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+#
+# Copyright (C) 2020 Nethesis S.r.l.
+# http://www.nethesis.it - nethserver@nethesis.it
+#
+# This script is part of NethServer.
+#
+# NethServer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or any later version.
+#
+# NethServer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with NethServer.  If not, see COPYING.
+#
+
+use esmith::ConfigDB;
+use NethServer::SSSD;
+use File::Temp;
+use JSON;
+my $sssd = new NethServer::SSSD();
+my $db = esmith::ConfigDB->open_ro() or die "Could not open config db";
+
+$fh = File::Temp->new();
+my ($login,$pass,$uid,$gid) = getpwnam('postgres') or die "postgres not in passwd file";
+chown $uid, $gid, $fh->filename;
+
+# Set the URL of the Jitsi Meet instance
+my $conference_jitsi_url = $db->get_prop('conference','JitsiUrl') || "";
+
+print $fh "DELETE FROM \"core\".\"settings\" WHERE service_id = 'com.sonicle.webtop.core' and key = 'meeting.jitsi.url';\n";
+print $fh "INSERT INTO \"core\".\"settings\" (\"service_id\", \"key\", \"value\") VALUES ('com.sonicle.webtop.core', 'meeting.jitsi.url', '$conference_jitsi_url');\n";
+
+# Execute SQL script
+system("su - postgres  -c 'psql webtop5 < ".$fh->filename."' >/dev/null");
