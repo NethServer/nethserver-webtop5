@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.6.16
+Version: 1.7.0
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -103,6 +103,10 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Fri Apr 16 2021 Matteo Valentini <matteo.valentini@nethesis.it> - 1.7.0-1
+- WebTop 5.11.3 - NethServer/dev#6463
+- WebTop: add languages in Cockpit interface - NethServer/dev#6441
+
 * Thu Mar 11 2021 Matteo Valentini <matteo.valentini@nethesis.it> - 1.6.16-1
 - WebTop 5.10.5 - NethServer/dev#6453
 
