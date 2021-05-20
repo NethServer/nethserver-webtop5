@@ -14,7 +14,7 @@ Requires: nethserver-mail-server, nethserver-postgresql, nethserver-httpd
 Requires: nethserver-conference
 Requires: php-cli, php-pgsql
 Requires: perl-libintl, perl-DBD-Pg
-Requires: webtop5 >= 1.4.16, webtop5-zpush, webtop5-webdav
+Requires: webtop5 >= 1.4.17, webtop5-zpush, webtop5-webdav
 Requires: tomcat8, java-1.8.0-openjdk
 Requires: nethserver-rh-php72-php-fpm
 Requires: postgresql-contrib
