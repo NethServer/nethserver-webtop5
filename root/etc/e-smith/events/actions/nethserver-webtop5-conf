@@ -78,6 +78,12 @@ else
     done
 fi
 
+# initialize postgres requisites
+for psql in `find /usr/share/webtop/sql/postgres -name \*.sql | sort`
+do
+    echo "Loading: $psql ..."
+    su - postgres  -c "psql webtop5 < $psql" >/dev/null
+done
 
 # Make sure old tomcat instance has been stopped
 systemctl stop tomcat@webtop 2>/dev/null || true
