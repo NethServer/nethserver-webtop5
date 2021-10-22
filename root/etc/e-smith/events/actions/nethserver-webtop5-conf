@@ -24,7 +24,7 @@
 for psql in `find /usr/share/webtop/sql/postgres -name \*.sql | sort`
 do
     echo "Loading: $psql ..."
-    su - postgres  -c "psql webtop5 < $psql" >/dev/null
+    su - postgres  -c "psql < $psql" >/dev/null
 done
 
 su - postgres -c "psql -lqt | cut -d \| -f 1 | grep -q -w webtop5"
