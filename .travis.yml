@@ -24,6 +24,11 @@ env:
         -e STAGES_PACK
         -e ENDPOINTS_PACK
         "
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install libgnutls30 -y
+
 install:
     - ./prep-sources
 
