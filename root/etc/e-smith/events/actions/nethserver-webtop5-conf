@@ -20,12 +20,6 @@
 # along with NethServer.  If not, see COPYING.
 #
 
-# initialize postgres requisites
-for psql in `find /usr/share/webtop/sql/postgres -name \*.sql | sort`
-do
-    echo "Loading: $psql ..."
-    su - postgres  -c "psql < $psql" >/dev/null
-done
 
 su - postgres -c "psql -lqt | cut -d \| -f 1 | grep -q -w webtop5"
 if [ $? -eq 1 ]; then # database do not exists
@@ -42,6 +36,13 @@ GRANT ALL PRIVILEGES ON DATABASE webtop5 to sonicle;
 EOF
     su - postgres  -c "psql < $tmp_sql" >/dev/null
     rm -f $tmp_sql
+
+    # initialize postgres requisites
+    for psql in `find /usr/share/webtop/sql/postgres -name \*.sql | sort`
+    do
+	    echo "Loading: $psql ..."
+	    su - postgres  -c "psql webtop5 < $psql" >/dev/null
+    done
 
     # initialize db schema in the following order
     # 1. core
@@ -79,6 +80,14 @@ EOF
     su - postgres  -c "psql webtop5 < $tmp_sql" >/dev/null
     rm -f $tmp_sql
 else
+
+    # initialize postgres requisites
+    for psql in `find /usr/share/webtop/sql/postgres -name \*.sql | sort`
+    do
+	    echo "Loading: $psql ..."
+	    su - postgres  -c "psql webtop5 < $psql" >/dev/null
+    done
+
     for sql in `find /usr/share/webtop/updates/pre -name \*.sql`
     do
         su - postgres -c "psql webtop5 < $sql" >/dev/null
