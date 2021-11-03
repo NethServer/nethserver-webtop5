@@ -54,6 +54,14 @@ my %locales = (
         DATE_FORMAT_SHORT => 'yyyy.MM.dd.',
         TIME_FORMAT_SHORT => 'HH:mm',
         TIME_FORMAT_LONG => 'HH:mm:ss'
+    },
+    'fr_FR' => {
+        LANGUAGE => 'fr_FR',
+        START_DAY => '1',
+        DATE_FORMAT_LONG => 'dd MMM yyyy',
+        DATE_FORMAT_SHORT => 'dd/MM/yyyy',
+        TIME_FORMAT_SHORT => 'HH:mm',
+        TIME_FORMAT_LONG => 'HH:mm:ss'
     }
 );
 
