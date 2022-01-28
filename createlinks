@@ -50,7 +50,7 @@ event_services($event,
                      'tomcat8@webtop' => 'restart',
                      'dovecot' => 'restart',
                      'httpd' => 'reload',
-                     'rh-php72-php-fpm' => 'restart',
+                     'rh-php73-php-fpm' => 'restart',
 );
 
 

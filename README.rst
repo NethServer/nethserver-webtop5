@@ -104,7 +104,7 @@ All logs are inside ``/var/log/z-push/`` directory.
 
 To inspect z-push status use: ::
 
-    sudo -u apache scl enable rh-php72 'php /usr/share/webtop/z-push/z-push-admin.php'
+    sudo -u apache scl enable rh-php73 'php /usr/share/webtop/z-push/z-push-admin.php'
 
 It is also possibile to enable z-push debug using these commands: ::
 
