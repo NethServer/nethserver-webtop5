@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enable SCL env
-source /opt/rh/rh-php72/enable
+source /opt/rh/rh-php73/enable
 
 # z-push search for config.json in current dir
 cd /usr/share/webtop/z-push/
