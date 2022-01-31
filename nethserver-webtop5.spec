@@ -95,6 +95,7 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
 %config %ghost %attr (0644,root,root) %{_sysconfdir}/httpd/conf.d/webtop.conf
+%config(noreplace) %attr (0644,root,root) /etc/opt/rh/rh-php73/php-fpm.d/000-webtop.conf
 %dir %{_nseventsdir}/%{name}-update
 %dir /usr/share/webtop/updates/pre
 %dir /usr/share/webtop/updates/post
