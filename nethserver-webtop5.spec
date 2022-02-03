@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.7.10
+Version: 1.8.0
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -104,6 +104,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Thu Feb 03 2022 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.8.0-1
+- WebTop: use PHP 7.3 for sabredav and z-push - NethServer/dev#6632
+
 * Thu Nov 25 2021 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.7.10-1
 - WebTop 5.14.2 - NethServer/dev#6604
 
