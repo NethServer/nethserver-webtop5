@@ -33,6 +33,7 @@ event_actions($event,
                      'initialize-default-databases' => '00',
                      'nethserver-webtop5-conf' => '20',
                      'nethserver-webtop5-conf-db' => '30',
+                     'nethserver-webtop5-conf-db-spam_threshold' => '31',
                      'nethserver-webtop5-locale-tz' => '40',
                      'nethserver-webtop5-clean-logs' => '50'
 );
