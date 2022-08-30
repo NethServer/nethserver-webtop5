@@ -36,4 +36,12 @@ if [[ -d "/var/lib/nethserver/webtop/" ]]; then
   /bin/chown -R postgres:postgres /var/lib/nethserver/webtop/backup
 fi
 
+# if logs are included in the backup then fix their permissions too
+
+if [ "$(/sbin/e-smith/config getprop backup-data IncludeLogs)" == "enabled" ]; then
+  if [[ -d "/var/log/webtop/" ]]; then
+    /bin/chown -R tomcat:tomcat /var/log/webtop
+  fi
+fi
+
 exit 0
