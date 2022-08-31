@@ -69,7 +69,10 @@ event_actions($event, 'nethserver-webtop5-backup' => 50);
 
 $event = 'post-restore-data';
 
-event_actions($event, 'nethserver-webtop5-restore' => 50);
+event_actions($event, 
+                     'nethserver-webtop5-fix-rsync-perms' => 10,
+                     'nethserver-webtop5-restore' => 50,
+);
 
 event_services($event, 'tomcat8@webtop' => 'restart');
 
