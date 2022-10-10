@@ -4,3 +4,4 @@ webtop.log.dir=/var/log/webtop
 webtop.log.file.basename=webtop
 webtop.log.file.policy=simple
 webtop.log.auth.target=file
+webtop.session.forcesecurecookie=true
