@@ -1,0 +1,9 @@
+#
+# 20webtop -- resources calendar event invites
+#
+{
+    $OUT = "";
+    foreach my $domain (map { $_->key } @domains) {
+        $OUT .= sprintf("%-38s %s\n", 'calendar-invite@' . $domain, 'vmail');
+    }
+}
