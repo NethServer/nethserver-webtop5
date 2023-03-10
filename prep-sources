@@ -9,6 +9,8 @@ cp jcharset-2.0/lib/jcharset-2.0.jar . || exit 1
 # tar directory
 set -e
 
+NODE_OPTIONS="--openssl-legacy-provider"
+export NODE_OPTIONS
 pushd ui
 npm install
 npm run build
