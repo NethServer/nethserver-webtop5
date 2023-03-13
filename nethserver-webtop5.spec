@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.8.11
+Version: 1.8.12
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -104,6 +104,9 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Mon Mar 13 2023 Matteo Valentini <matteo.valentini@nethesis.it> - 1.8.12-1
+- WebTop 5.18.5 - NethServer/dev#6734
+
 * Mon Dec 12 2022 Matteo Valentini <matteo.valentini@nethesis.it> - 1.8.11-1
 - WebTop 5.18.4 - NethServer/dev#6724
 
