@@ -5,3 +5,4 @@ webtop.log.file.basename=webtop
 webtop.log.file.policy=simple
 webtop.log.auth.target=file
 webtop.session.forcesecurecookie=true
+webtop.home=/var/lib/nethserver/webtop
