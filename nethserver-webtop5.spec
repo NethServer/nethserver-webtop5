@@ -1,6 +1,6 @@
 Summary: NethServer webtop5 configuration
 Name: nethserver-webtop5
-Version: 1.8.21
+Version: 1.8.22
 Release: 1%{?dist}
 License: GPL
 URL: %{url_prefix}/%{name}
@@ -104,6 +104,10 @@ cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
 %doc README.rst
 
 %changelog
+* Thu Oct 22 2026 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.8.22-1
+- WebTop 5.26.1 - NethServer/dev#7033
+- PHP critical RCE vulnerabilities (CVE-2026-109618 / CVE-2026-109619) - NethServer/dev#8256
+
 * Mon Sep 23 2024 Matteo Valentini <matteo.valentini@nethesis.it> - 1.8.21-1
 - WebTop 5.25.1 - NethServer/dev#7012
 
